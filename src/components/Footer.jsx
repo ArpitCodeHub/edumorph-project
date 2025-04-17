@@ -1,9 +1,9 @@
 const Footer = () => {
     return (
       <footer className="bottom-3 left-3 right-3 bg-white/10 backdrop-blur-lg border-t border-gray-600 rounded-xl py-12 px-6">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0 flex-wrap">
           
-          <div className="text-3xl font-bold bg-gradient-to-r from-pink-600 to-gray-300 bg-clip-text text-transparent">
+          <div className="text-4xl font-bold bg-gradient-to-r from-pink-600 to-gray-300 bg-clip-text text-transparent">
             EduMorph
           </div>
   
@@ -15,7 +15,7 @@ const Footer = () => {
             <a href="#privacy" className="hover:text-pink-400">Privacy Policy</a>
           </div>
   
-          <div className="flex space-x-4">
+          <div className="flex space-x-4 flex-wrap">
             <div className="text-center">
                 <a href="https://twitter.com" className="text-gray-300 hover:text-pink-400">X (twitter)</a>
                 <br />
@@ -33,7 +33,7 @@ const Footer = () => {
             </div>
           </div>
         </div> 
-        <h4 className="text-gray-300 hover:text-blue-500 text-center mt-14"> © 2025 EduMorph. All rights reserved. </h4>
+        <h4 className="text-gray-300 hover:text-purple-500 text-center mt-14"> © 2025 EduMorph. All rights reserved. </h4>
       </footer>
     );
   };

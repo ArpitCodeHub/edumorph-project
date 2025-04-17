@@ -27,11 +27,58 @@ body {
   animation: fadeIn 3s ease-in;
 }
 
+#slide-right {
+  animation: slideRight 1.2s ease-out;
+}
+
+#slide-left {
+  animation: slideLeft 1.2s ease-out;
+}
+
+@keyframes slideRight {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  75%{
+    transform: translateX(10%);
+    opacity:0.75;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideLeft {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  75%{
+    transform: translateX(-10%);
+    opacity:0.75;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
 @keyframes fadeIn {
   from {
       opacity: 0;
   }
   to {
       opacity: 1;
+  }
+}
+
+@media (max-width:480px){
+  #hero-img{
+    visibility: hidden;
+  }
+  #punchLine{
+    margin-left: 50%;
   }
 }

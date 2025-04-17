@@ -10,7 +10,9 @@ const features = [
 
 const FeatureCards = () => {
   return (
-    <div className="flex flex-wrap justify-center gap-20 mt-28 px-6 mb-5" id="fade-in2">
+    <>
+      <div className="text-center mt-20" id="fade-in2"><h1 className="inline-block text-4xl font-bold bg-gradient-to-r from-pink-500 to-purple-600 bg-clip-text text-transparent px-2 py-2"> Start Learning </h1></div>
+      <div className="flex flex-wrap justify-center gap-20 mt-10 px-6 mb-5" id="fade-in2">
       {features.map((feature, index) => (
         <div key={index} className={`relative w-80 rounded-xl border border-white/20 ${feature.bg} backdrop-blur-lg shadow-lg transition-all transform hover:scale-105 hover:shadow-xl group py-3 px-3`}>
 
@@ -26,7 +28,8 @@ const FeatureCards = () => {
           </div>
         </div>
       ))}
-    </div>
+      </div>
+    </>
   );
 };
 
