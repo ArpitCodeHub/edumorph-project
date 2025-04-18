@@ -52,6 +52,7 @@ const ContactUs = () => {
               placeholder="Enter your name"
               value={formData.name}
               onChange={handleChange}
+              required
             />
           </div>
 
@@ -64,6 +65,7 @@ const ContactUs = () => {
               placeholder="Enter your email"
               value={formData.email}
               onChange={handleChange}
+              required
             />
           </div>
 
@@ -75,6 +77,7 @@ const ContactUs = () => {
               placeholder="Write your message"
               value={formData.message}
               onChange={handleChange}
+              required
             />
           </div>
 
