@@ -21,17 +21,17 @@ const Footer = () => {
             <div className="text-center">
                 <a href="https://twitter.com" className="text-gray-300 hover:text-pink-400">X (twitter)</a>
                 <br />
-                <img className='ml-6' height="37px" width="37px" src="src\assets\icons8-x-94.png" alt="X" />
+                <img className='ml-6' height="37px" width="37px" src="/icons8-x-94.png" alt="X" />
             </div>
             <div className="text-center">
                 <a href="https://linkedin.com" className="text-gray-300 hover:text-pink-400">LinkedIn</a>
                 <br />
-                <img className='ml-4' height="35px" width="35px" src="src\assets\icons8-linkedin-94.png" alt="LinkedIn" />
+                <img className='ml-4' height="35px" width="35px" src="/icons8-linkedin-94.png" alt="LinkedIn" />
             </div>
             <div>
                 <a href="https://github.com" className="text-gray-300 hover:text-pink-400">GitHub</a>
                 <br />
-                <img className='ml-3' height="35px" width="35px" src="src\assets\icons8-github-logo-94.png" alt="GitHub" />
+                <img className='ml-3' height="35px" width="35px" src="/icons8-github-logo-94.png" alt="GitHub" />
             </div>
           </div>
         </div> 
