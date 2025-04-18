@@ -20,12 +20,12 @@ const Navbar = () => {
           </div>
 
           <div className="hidden md:flex space-x-4">
-            <button className="px-4 py-2 bg-blue-700 text-white rounded-md hover:bg-blue-600">
+            <Link to="/login" className="px-4 py-2 bg-blue-700 text-white rounded-md hover:bg-blue-600">
               Login
-            </button>
-            <button className="px-4 py-2 bg-pink-600 text-white rounded-md hover:bg-pink-500">
+            </Link>
+            <Link to="/signup" className="px-4 py-2 bg-pink-600 text-white rounded-md hover:bg-pink-500">
               Sign Up
-            </button>
+            </Link>
           </div>
 
           {/* Menu Button */}
