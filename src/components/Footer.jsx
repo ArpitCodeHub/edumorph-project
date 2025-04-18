@@ -19,17 +19,17 @@ const Footer = () => {
   
           <div className="flex space-x-4 flex-wrap">
             <div className="text-center">
-                <a href="https://twitter.com" className="text-gray-300 hover:text-pink-400">X (twitter)</a>
+                <a href="https://x.com" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-pink-400">X (twitter)</a>
                 <br />
                 <img className='ml-6' height="37px" width="37px" src="/icons8-x-94.png" alt="X" />
             </div>
             <div className="text-center">
-                <a href="https://linkedin.com" className="text-gray-300 hover:text-pink-400">LinkedIn</a>
+                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-pink-400">LinkedIn</a>
                 <br />
                 <img className='ml-4' height="35px" width="35px" src="/icons8-linkedin-94.png" alt="LinkedIn" />
             </div>
             <div>
-                <a href="https://github.com" className="text-gray-300 hover:text-pink-400">GitHub</a>
+                <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-pink-400">GitHub</a>
                 <br />
                 <img className='ml-3' height="35px" width="35px" src="/icons8-github-logo-94.png" alt="GitHub" />
             </div>
