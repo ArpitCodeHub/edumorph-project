@@ -19,6 +19,8 @@ const VoiceInput = () => {
     { code: "fr-FR", name: "French" },
     { code: "de-DE", name: "German" },
     { code: "it-IT", name: "Italian" },
+    { code: "ru-RU", name: "Russian" },
+    { code: "ko-KR", name: "Korean" },
     { code: "ja-JP", name: "Japanese" },
     { code: "pt-BR", name: "Portuguese (Brazil)" },
     { code: "zh-CN", name: "Chinese (Simplified)" },
