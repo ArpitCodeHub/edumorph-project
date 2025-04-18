@@ -24,7 +24,7 @@ const ContactUs = () => {
 
       <Navbar />
 
-      <div className="bg-gray-300 p-6 rounded-lg shadow-lg max-w-lg mx-auto mt-32">
+      <div className="bg-gray-300 p-6 rounded-lg shadow-lg max-w-lg mx-auto mt-32" id="fade-in2">
         <h2 className="text-3xl font-bold bg-gradient-to-r from-pink-600 to-blue-700 bg-clip-text text-transparent mb-4 text-center "> EduMorph</h2>
 
         <div className="space-y-2">
@@ -38,7 +38,7 @@ const ContactUs = () => {
           <p className="text-blue-700 font-semibold">contact@edumorph.com</p>
         </div>
       </div>
-      <div className="mt-16 mb-10">
+      <div className="mt-16 mb-10" id="fade-in2">
         <h2 className="text-pink-600 text-2xl font-bold mb-4 text-center">📩 Get in Touch</h2>
         <p className="text-gray-300 text-center mb-6">We'd love to hear from you !</p>
 
