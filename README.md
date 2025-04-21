@@ -1,12 +1,43 @@
-# React + Vite
+# 🌟 EduMorph - Multimodal Learning Platform
+EduMorph is a next-generation AI-powered education tool designed to revolutionize the way users engage with learning material through text, voice, and images. By leveraging Groq’s ultra-fast AI inference, EduMorph provides instant explanations, interactive tutoring, and adaptive learning experiences, making knowledge more accessible than ever.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# 🚀 Key Features
+🎙️ Voice-Based Learning
+- Users can ask questions via voice commands and receive AI-generated explanations instantly.
+- The platform supports text-to-speech, allowing educational content to be read aloud for enhanced accessibility.
 
-Currently, two official plugins are available:
+ 📸 Image Recognition for Learning
+- Users can upload images (math problems, diagrams, historical artifacts) to receive real-time AI explanations.
+- AI can annotate images and generate visual learning aids, making complex concepts easier to grasp.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+ 📚 Adaptive AI Tutoring
+- Uses Groq’s real-time processing to analyze learning patterns and offer personalized recommendations.
+- AI-powered quizzes & simulations adapt difficulty levels based on user performance, ensuring a tailored learning experience.
 
-## Expanding the ESLint configuration
+ 🌍 Web Capture Tool
+- Allows users to capture & process webpages, turning information into structured, digestible learning material.
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+ 📝 AI-Powered Note-Taking & Summarization
+- Users can upload documents, and AI instantly summarizes key points for quick reference.
+- Designed for efficient studying & fast revisions, helping learners retain crucial information.
+
+# 🌐 Live Demo
+Check out here : [edumorph.netlify.app]
+
+# 🔥 Use Case Scenarios
+✅ Students leveraging AI for interactive tutoring sessions.
+✅ Educators using AI to generate lesson content instantly.
+✅ Researchers accessing real-time summaries of academic papers.
+✅ Multilingual learners benefiting from AI-powered translation & narration.
+
+# 💡 Why EduMorph?
+EduMorph transforms traditional learning into an interactive, AI-enhanced experience, making education more accessible, adaptive, and engaging than ever before. Whether you’re a student, teacher, or researcher, EduMorph enhances your knowledge journey with cutting-edge AI innovations.
+
+# 🛠️ TechStack and Tools
+React.js , Tailwind CSS , Vite , Spline
+
+# 🔌 APIs
+Groq , Hugging Face
+
+# 📡 Deployment 
+Netlify 
