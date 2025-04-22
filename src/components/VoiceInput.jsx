@@ -4,6 +4,7 @@ import { BeatLoader } from "react-spinners";
 import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import jsPDF from "jspdf";
 
 const VoiceInput = () => {
   const [response, setResponse] = useState("");
@@ -41,46 +42,56 @@ const VoiceInput = () => {
     }
   };
 
-  const handleStop = async () => {
-    try {
-      await SpeechRecognition.stopListening();
-      if (!transcript.trim()) {
-        setError("No speech detected. Please try again.");
-        return;
-      }
+// Keep this outside of handleStop
+const saveAsPDF = (response) => {
+  const doc = new jsPDF();
+  doc.text(response, 10, 10);
+  doc.save("ai-response.pdf");
+};
 
-      setLoading(true);
-      setResponse("");
-      
-      const { data } = await axios.post(
-        "https://api.groq.com/openai/v1/chat/completions",
-        {
-          messages: [
-            { role: "system", content: "You are a helpful assistant." },
-            { role: "user", content: `${transcript} (respond in ${selectedLanguage})` },
-          ],
-          model: "llama-3.3-70b-versatile",
-        },
-        {
-          headers: {
-            Authorization: `Bearer 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`,
-            "Content-Type": "application/json",
-          },
-        }
-      );
-
-      const aiResponse = data.choices[0].message.content;
-      setResponse(aiResponse);
-      const utterance = new SpeechSynthesisUtterance(aiResponse);
-      utterance.lang = selectedLanguage;
-      window.speechSynthesis.speak(utterance);
-    } catch (err) {
-      setError(err.response?.data?.error?.message || "Failed to process request");
-    } finally {
-      setLoading(false);
-      resetTranscript();
+const handleStop = async () => {
+  try {
+    await SpeechRecognition.stopListening();
+    if (!transcript.trim()) {
+      setError("No speech detected. Please try again.");
+      return;
     }
-  };
+
+    setLoading(true);
+    setResponse("");
+
+    const { data } = await axios.post(
+      "https://api.groq.com/openai/v1/chat/completions",
+      {
+        messages: [
+          { role: "system", content: "You are a helpful assistant." },
+          { role: "user", content: `${transcript} (respond in ${selectedLanguage})` },
+        ],
+        model: "llama-3.3-70b-versatile",
+      },
+      {
+        headers: {
+          Authorization: `Bearer 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`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    const aiResponse = data.choices[0].message.content;
+    setResponse(aiResponse);
+
+    const utterance = new SpeechSynthesisUtterance(aiResponse);
+    utterance.lang = selectedLanguage;
+    window.speechSynthesis.speak(utterance);
+
+  } catch (err) {
+    setError(err.response?.data?.error?.message || "Failed to process request");
+  } finally {
+    setLoading(false);
+    resetTranscript();
+  }
+};
+
 
   if (!browserSupportsSpeechRecognition) {
     return (
@@ -169,6 +180,17 @@ const VoiceInput = () => {
                 {response || "Response will appear here..."}
               </p>
             )}
+
+             {response && (
+            <div className="text-center">
+              <button
+                onClick={() => saveAsPDF(response)}
+                className="bg-green-600 hover:bg-green-700 transition px-5 py-2 rounded-xl shadow-md"
+              >
+                Save as PDF
+              </button>
+            </div>
+          )}
           </div>
         </div>
       </div>
