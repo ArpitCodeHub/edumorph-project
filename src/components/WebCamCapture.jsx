@@ -1,5 +1,7 @@
 
 import React, { useRef, useState, useEffect } from "react";
+import Footer from "./Footer";
+import Navbar from "./Navbar";
 
 export default function WebCamCapture() {
   const videoRef = useRef(null);
@@ -69,7 +71,9 @@ export default function WebCamCapture() {
   };
 
   return (
-    <div className="min-h-screen bg-[#1c1c2c] text-white flex flex-col items-center justify-center px-4 py-12 relative overflow-hidden">
+    <>
+    <Navbar />
+    <div className="min-h-screen bg-[#1c1c2c] text-white flex flex-col items-center justify-center px-4 py-12 relative overflow-hidden" id="fade-in2">
       {/* Sprinkle Container */}
       <div ref={sprinkleContainerRef} className="absolute inset-0 pointer-events-none z-10" />
 
@@ -154,5 +158,8 @@ export default function WebCamCapture() {
         }
       `}</style>
     </div>
+    <Footer />
+    </>
+    
   );
 }

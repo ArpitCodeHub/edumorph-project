@@ -58,7 +58,7 @@ export default function TextSummarizer() {
   return (
     <>
     <Navbar />
-    <div className="flex justify-center items-center min-h-screen bg-[#1c1c2c] p-4 transition-all">
+    <div className="flex justify-center items-center min-h-screen bg-[#1c1c2c] p-4 transition-all" id="fade-in2">
       <div className="w-full max-w-2xl bg-[#1c1c2c] p-8 rounded-2xl shadow-xl text-white transform transition-all duration-500 ease-in-out hover:scale-105">
         <h1 className="text-4xl font-bold mb-6 text-center animate__animated animate__fadeIn text-pink-600">📝 Text Summarizer </h1>
         
