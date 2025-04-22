@@ -115,7 +115,12 @@ const VoiceInput = () => {
               <option value="en-US">English</option>
               <option value="es-ES">Spanish</option>
               <option value="fr-FR">French</option>
-            </select>
+              <option value="hi-IN">Hindi</option>
+              <option value="de-DE">German</option>
+              <option value="ru-RU">Russian</option>
+              <option value="ja-JP">Japanese</option>
+              <option value="zh-CN">Chinese (Simplified)</option>
+                   </select>
           </div>
 
           <div className="flex gap-4 w-full sm:w-auto">
