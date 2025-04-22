@@ -1,163 +1,176 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { BeatLoader } from "react-spinners";
-import SpeechRecognition, {
-  useSpeechRecognition,
-} from "react-speech-recognition";
-import { askGroqAI } from "../services/groqAPI";
-import jsPDF from "jspdf";
+import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
+import Navbar from "./Navbar";
+import Footer from "./Footer";
 
 const VoiceInput = () => {
   const [response, setResponse] = useState("");
   const [loading, setLoading] = useState(false);
-  const { transcript, listening, resetTranscript } = useSpeechRecognition();
+  const [error, setError] = useState("");
   const [selectedLanguage, setSelectedLanguage] = useState("en-US");
+  
+  const {
+    transcript,
+    resetTranscript,
+    browserSupportsSpeechRecognition,
+    isMicrophoneAvailable,
+  } = useSpeechRecognition();
 
-  const supportedLanguages = [
-    { code: "en-US", name: "English (US)" },
-    { code: "hi-IN", name: "Hindi" },
-    { code: "es-ES", name: "Spanish" },
-    { code: "fr-FR", name: "French" },
-    { code: "de-DE", name: "German" },
-    { code: "it-IT", name: "Italian" },
-    { code: "ru-RU", name: "Russian" },
-    { code: "ko-KR", name: "Korean" },
-    { code: "ja-JP", name: "Japanese" },
-    { code: "pt-BR", name: "Portuguese (Brazil)" },
-    { code: "zh-CN", name: "Chinese (Simplified)" },
-  ];
+  // Check browser support and microphone access
+  useEffect(() => {
+    if (!browserSupportsSpeechRecognition) {
+      setError("Speech recognition is not supported in your browser");
+    }
+    if (!isMicrophoneAvailable) {
+      setError("Microphone access is required. Please enable microphone permissions.");
+    }
+  }, [browserSupportsSpeechRecognition, isMicrophoneAvailable]);
 
   const startListening = () => {
-    if (!listening) {
+    resetTranscript();
+    setError("");
+    try {
       SpeechRecognition.startListening({
-        continuous: true,
         language: selectedLanguage,
+        continuous: true
       });
+    } catch (err) {
+      setError("Failed to access microphone");
     }
-  };
-
-  const readAloud = (text) => {
-    const speech = new SpeechSynthesisUtterance(text);
-    speech.lang = selectedLanguage;
-    window.speechSynthesis.speak(speech);
   };
 
   const handleStop = async () => {
-    SpeechRecognition.stopListening();
-    setLoading(true);
-    const aiResponse = await askGroqAI(transcript, selectedLanguage);
-    setResponse(aiResponse);
-    readAloud(aiResponse);
-    setLoading(false);
-    saveToHistory(transcript, aiResponse);
-  };
+    try {
+      await SpeechRecognition.stopListening();
+      if (!transcript.trim()) {
+        setError("No speech detected. Please try again.");
+        return;
+      }
 
-  const saveToHistory = (transcript, response) => {
-    const history = JSON.parse(localStorage.getItem("ai-history")) || [];
-    history.push({ transcript, response });
-    localStorage.setItem("ai-history", JSON.stringify(history));
-  };
+      setLoading(true);
+      setResponse("");
+      
+      const { data } = await axios.post(
+        "https://api.groq.com/openai/v1/chat/completions",
+        {
+          messages: [
+            { role: "system", content: "You are a helpful assistant." },
+            { role: "user", content: `${transcript} (respond in ${selectedLanguage})` },
+          ],
+          model: "llama-3.3-70b-versatile",
+        },
+        {
+          headers: {
+            Authorization: `Bearer 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`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
-  const saveAsPDF = (response) => {
-    const doc = new jsPDF();
-    doc.text(response, 10, 10);
-    doc.save("ai-response.pdf");
-  };
-
-  const handleReset = () => {
-    resetTranscript();
-    setResponse("");
-    window.speechSynthesis.cancel();
-    SpeechRecognition.stopListening();
-  };
-
-  useEffect(() => {
-    if (listening) {
-      console.log("Listening...");
-    } else {
-      console.log("Not listening");
+      const aiResponse = data.choices[0].message.content;
+      setResponse(aiResponse);
+      const utterance = new SpeechSynthesisUtterance(aiResponse);
+      utterance.lang = selectedLanguage;
+      window.speechSynthesis.speak(utterance);
+    } catch (err) {
+      setError(err.response?.data?.error?.message || "Failed to process request");
+    } finally {
+      setLoading(false);
+      resetTranscript();
     }
-  }, [listening]);
+  };
+
+  if (!browserSupportsSpeechRecognition) {
+    return (
+      <div className="text-gray-300 p-4 text-center">
+        Your browser doesn't support speech recognition.
+      </div>
+    );
+  }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#0a0114] to-[#1a0b2e] text-white font-sans flex flex-col items-center justify-center px-4 py-10">
-      <h1 className="text-2xl font-bold text-purple-400 mb-4 drop-shadow-[0_0_10px_#8a2be2]">
-        Voice-Based Learning Assistant
-      </h1>
+    <>
+    <Navbar />
+    <div className="min-h-screen bg-black p-4 md:p-6 text-gray-300 mt-36" id="fade-in2" >
+      <div className="max-w-2xl mx-auto">
+        <h1 className="text-3xl md:text-4xl font-bold text-pink-600 mb-6 md:mb-8 text-center">
+          🎙️ Voice Based Learning
+        </h1>
 
-      <div className="bg-[#0e011a] border border-pink-700 rounded-3xl shadow-[0_0_60px_#8e24aa40] p-6 md:p-10 w-full max-w-3xl backdrop-blur-sm transition-all duration-300">
-        <div className="space-y-6">
-          <div className="text-center">
-            <p className="text-sm text-gray-300 mb-2">
-              Ask your question using voice 🎙️
-            </p>
+        {error && (
+          <div className="mb-4 p-3 bg-red-900/30 text-red-400 rounded-lg">
+            ⚠️ {error}
+          </div>
+        )}
+
+        <div className="flex flex-col sm:flex-row gap-4 mb-6 items-center justify-center">
+          <div className="w-full sm:w-auto">
             <select
               value={selectedLanguage}
               onChange={(e) => setSelectedLanguage(e.target.value)}
-              className="bg-[#200c33] border border-pink-700 text-white px-4 py-2 rounded-xl"
+              className="w-full bg-black border-2 border-pink-600 rounded-lg px-4 py-2 text-gray-300 focus:outline-none focus:ring-2 focus:ring-pink-500"
             >
-              {supportedLanguages.map((lang) => (
-                <option key={lang.code} value={lang.code}>
-                  {lang.name}
-                </option>
-              ))}
+              <option value="en-US">English</option>
+              <option value="es-ES">Spanish</option>
+              <option value="fr-FR">French</option>
             </select>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="flex gap-4 w-full sm:w-auto">
             <button
               onClick={startListening}
-              className="bg-pink-600 hover:bg-pink-700 transition px-5 py-2 rounded-xl shadow-md"
+              disabled={!isMicrophoneAvailable || loading}
+              className={`w-1/2 sm:w-auto px-6 py-2 rounded-lg font-medium transition-all ${
+                SpeechRecognition.listening
+                  ? "bg-pink-600/80 cursor-not-allowed"
+                  : "bg-pink-600 hover:bg-pink-700"
+              } text-white disabled:bg-gray-700 disabled:cursor-not-allowed`}
             >
-              Start Listening
+              {SpeechRecognition.listening ? "🎤 Listening..." : "🎤 Start"}
             </button>
+
             <button
               onClick={handleStop}
-              className="bg-blue-600 hover:bg-blue-700 transition px-5 py-2 rounded-xl shadow-md"
+              disabled={!transcript || loading}
+              className="w-1/2 sm:w-auto px-6 py-2 bg-blue-700 text-white rounded-lg font-medium hover:bg-blue-800 disabled:bg-gray-700 disabled:cursor-not-allowed transition-all"
             >
-              Stop & Ask
-            </button>
-            <button
-              onClick={handleReset}
-              className="bg-gray-700 hover:bg-gray-800 transition px-5 py-2 rounded-xl shadow-md"
-            >
-              Reset
+              {loading ? "Processing..." : "✨ Ask"}
             </button>
           </div>
+        </div>
 
-          <div className="bg-[#1b0b2f] p-4 rounded-lg border border-purple-700">
-            <p className="text-sm text-purple-300">
-              <b>🎧 Transcript:</b>{" "}
-              {listening ? "Listening..." : transcript || "Start speaking..."}
+        <div className="space-y-6">
+          <div className="border-2 border-pink-600 rounded-xl p-4 md:p-6">
+            <h2 className="text-pink-600 font-semibold mb-2 md:mb-3 text-lg">
+              Your Speech Input:
+            </h2>
+            <p className="whitespace-pre-wrap text-gray-300">
+              {transcript || "Speak something to get started..."}
             </p>
           </div>
 
-          {loading ? (
-            <div className="flex justify-center">
-              <BeatLoader color="#e879f9" size={15} />
-            </div>
-          ) : (
-            response && (
-              <div className="bg-[#2b1242] border border-purple-800 p-4 rounded-xl text-left">
-                <p className="text-purple-200">
-                  <b>🧠 AI Response:</b> {response}
-                </p>
+          <div className="border-2 border-blue-700 rounded-xl p-4 md:p-6">
+            <h2 className="text-blue-600 font-semibold mb-2 md:mb-3 text-lg">
+              Assistant Response:
+            </h2>
+            {loading ? (
+              <div className="flex justify-center">
+                <BeatLoader color="#db2777" size={15} />
               </div>
-            )
-          )}
-
-          {response && (
-            <div className="text-center">
-              <button
-                onClick={() => saveAsPDF(response)}
-                className="bg-green-600 hover:bg-green-700 transition px-5 py-2 rounded-xl shadow-md"
-              >
-                Save as PDF
-              </button>
-            </div>
-          )}
+            ) : (
+              <p className="whitespace-pre-wrap text-gray-300">
+                {response || "Response will appear here..."}
+              </p>
+            )}
+          </div>
         </div>
       </div>
     </div>
+    <Footer />
+    </>
+    
   );
 };
 

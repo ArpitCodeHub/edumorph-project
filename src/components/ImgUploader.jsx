@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { BeatLoader } from "react-spinners";
+import Footer from "./Footer";
+import Navbar from "./Navbar";
 
-const ImageUploader = () => {
+const ImgUploader = () => {
   const [image, setImage] = useState(null);
   const [imageFile, setImageFile] = useState(null);
   const [response, setResponse] = useState("");
@@ -79,18 +81,20 @@ const ImageUploader = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#0a0114] to-[#1a0b2e] text-white font-sans flex flex-col items-center justify-center px-4 py-10">
-      <h2 className="text-2xl font-bold text-purple-400 mb-4 drop-shadow-[0_0_10px_#8a2be2]">
+    <>
+    <Navbar />
+    <div className="min-h-screen bg-gradient-to-b from-[#0a0114] to-[#1a0b2e] text-white font-sans flex flex-col items-center justify-center px-4 py-10" id="fade-in2">
+      <h2 className="text-4xl font-bold text-pink-500 mb-4 drop-shadow-[0_0_10px_#8a2be2]">
         🖼️ Image Recognition
       </h2>
-
+      <br></br>
       <input
         type="file"
         accept="image/*"
         onChange={handleImageChange}
         className="file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-[#7b2cbf] file:text-white hover:file:bg-[#5f1fa7] transition mb-4"
       />
-
+      <br></br>
       {image && (
         <img
           src={image}
@@ -117,7 +121,7 @@ const ImageUploader = () => {
           </div>
         )
       )}
-
+      <br />
       <div className="mt-4">
         <button
           onClick={handleReset}
@@ -127,6 +131,9 @@ const ImageUploader = () => {
         </button>
       </div>
     </div>
+    <Footer />
+    </>
+    
   );
 };
 

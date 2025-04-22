@@ -1,7 +1,7 @@
 
 import React, { useRef, useState, useEffect } from "react";
 
-export default function WebcamCapture() {
+export default function WebCamCapture() {
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
   const sprinkleContainerRef = useRef(null);

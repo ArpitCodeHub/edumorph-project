@@ -1,5 +1,7 @@
 // components/TextSummarizer.jsx
 import React, { useState } from "react";
+import Navbar from "./Navbar";
+import Footer from "./Footer";
 
 export default function TextSummarizer() {
   const [inputText, setInputText] = useState("");
@@ -54,12 +56,14 @@ export default function TextSummarizer() {
   };
 
   return (
+    <>
+    <Navbar />
     <div className="flex justify-center items-center min-h-screen bg-[#1c1c2c] p-4 transition-all">
       <div className="w-full max-w-2xl bg-[#1c1c2c] p-8 rounded-2xl shadow-xl text-white transform transition-all duration-500 ease-in-out hover:scale-105">
-        <h1 className="text-4xl font-bold mb-6 text-center animate__animated animate__fadeIn text-red-400">📝 Text Summarizer (AI Powered)</h1>
+        <h1 className="text-4xl font-bold mb-6 text-center animate__animated animate__fadeIn text-pink-600">📝 Text Summarizer </h1>
         
         <textarea
-          className="w-full h-60 p-4 border border-purple-800 bg-[#0f0f1a] text-white rounded-xl resize-none focus:outline-none focus:ring-2 focus:ring-pink-500 transition-all"
+          className="w-full h-60 p-4 border border-blue-700 bg-[#0f0f1a] text-white rounded-xl resize-none focus:outline-none focus:ring-2 focus:ring-pink-500 transition-all"
           placeholder="Paste or write your text here..."
           value={inputText}
           onChange={(e) => setInputText(e.target.value)}
@@ -86,12 +90,15 @@ export default function TextSummarizer() {
         {summary && (
           <div className="mt-6">
             <h2 className="text-xl font-semibold mb-2">Summary:</h2>
-            <p className="bg-gray-800 p-4 rounded-xl border border-purple-800 text-white whitespace-pre-wrap animate__animated animate__fadeIn">
+            <p className="bg-gray-800 p-4 rounded-xl border border-blue-700 text-white whitespace-pre-wrap animate__animated animate__fadeIn">
               {summary}
             </p>
           </div>
         )}
       </div>
     </div>
+    <Footer />
+    </>
+    
   );
 }
