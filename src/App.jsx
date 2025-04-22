@@ -8,6 +8,9 @@ function App() {
     const [loading, setLoading] = useState(true);
 
     return (
+        <>
+            {loading ? <Preloader onFinish={() => setLoading(false)} /> : <Home />}
+        </>
         <div className="min-h-screen d-flex flex-column">
             <Navbar />
             <main className="flex-grow-1">
