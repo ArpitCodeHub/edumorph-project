@@ -3,22 +3,21 @@ EduMorph is a next-generation AI-powered education tool designed to revolutioniz
 
 # 🚀 Key Features
 🎙️ Voice-Based Learning
-- Users can ask questions via voice commands and receive AI-generated explanations instantly.
-- The platform supports text-to-speech, allowing educational content to be read aloud for enhanced accessibility.
+- Users can ask questions via voice commands and receive AI-generated downloadable explanations instantly.
+- The platform supports live voice interaction, allowing educational content to be read aloud for enhanced accessibility.
 
  📸 Image Recognition for Learning
 - Users can upload images (math problems, diagrams, historical artifacts) to receive real-time AI explanations.
-- AI can annotate images and generate visual learning aids, making complex concepts easier to grasp.
 
  📚 Adaptive AI Tutoring
 - Uses Groq’s real-time processing to analyze learning patterns and offer personalized recommendations.
 - AI-powered quizzes & simulations adapt difficulty levels based on user performance, ensuring a tailored learning experience.
 
  🌍 Web Capture Tool
-- Allows users to capture & process webpages, turning information into structured, digestible learning material.
+- Allows users to capture & process live surroundings and images. 
 
  📝 AI-Powered Note-Taking & Summarization
-- Users can upload documents, and AI instantly summarizes key points for quick reference.
+- Users can paste vast documents, and AI instantly summarizes key points for quick reference.
 - Designed for efficient studying & fast revisions, helping learners retain crucial information.
 
 # 🌐 Live Demo
@@ -41,3 +40,12 @@ Groq , Hugging Face
 
 # 📡 Deployment 
 Netlify 
+
+# Some demo Screenshots of our website
+![Screenshot 2025-04-23 191822](https://github.com/user-attachments/assets/333463dc-c485-414a-aea0-6814b4cc975c)
+![Screenshot 2025-04-23 191252](https://github.com/user-attachments/assets/ce4f2749-ce20-492d-b2be-a4813f48e776)
+![Screenshot 2025-04-23 191906](https://github.com/user-attachments/assets/7c21c5dd-f69e-4574-abb5-83edadf805df)
+![Screenshot 2025-04-23 192009](https://github.com/user-attachments/assets/75065e76-8b41-47f7-a333-9e5f1883846d)
+![Screenshot 2025-04-23 192306](https://github.com/user-attachments/assets/45b69a60-f633-4800-bc78-69e0628e650e)
+![image](https://github.com/user-attachments/assets/f63957aa-f457-4e09-a63f-8bb6114a052f)
+![Screenshot 2025-04-23 192407](https://github.com/user-attachments/assets/407fcca8-acdb-4163-a376-e063af20384c)
