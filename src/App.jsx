@@ -11,6 +11,8 @@ import ImgUploader from "./components/ImgUploader";
 import TextSummarizer from "./components/TextSummarizer";
 import WebCamCapture from "./components/WebCamCapture";
 import ChatBot from "./components/AiChatBot";
+import FAQ from "./pages/FAQ";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 
 function App() {
     const [loading, setLoading] = useState(true);
@@ -31,6 +33,8 @@ function App() {
                     <Route path="/text-feature" element={<TextSummarizer />} />
                     <Route path="/webcam-feature" element={<WebCamCapture />} />
                     <Route path="/chatbot-feature" element={<ChatBot />} />
+                    <Route path="/faq" element={<FAQ />} />
+                    <Route path="/privacypolicy" element={<PrivacyPolicy />} />
                 </Routes>
             )}
         </Router>

@@ -15,7 +15,7 @@ const SignUp = () => {
     <>
       <ToastContainer position="top-center" autoClose={4000} />
       <Navbar />
-      <div className="min-h-screen bg-black flex justify-center items-center px-4 sm:px-8">
+      <div className="min-h-screen bg-black flex justify-center items-center px-4 sm:px-8" id="fade-in">
         <div className="max-w-md w-full bg-gradient-to-r from-pink-600 to-blue-700 text-gray-300 p-8 rounded-lg shadow-lg">
           <h2 className="text-3xl font-bold text-gray-300 text-center mb-6">🔐 Sign Up</h2>
 

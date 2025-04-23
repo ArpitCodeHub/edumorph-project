@@ -13,8 +13,8 @@ const Footer = () => {
             <Link to="/aboutus" className="hover:text-pink-400">About Us</Link>
             <Link to="/contact" href="#contact" className="hover:text-pink-400">Contact</Link>
             <Link to="/" className="hover:text-pink-400">Features</Link>
-            <a href="#faq" className="hover:text-pink-400">FAQ</a>
-            <a href="#privacy" className="hover:text-pink-400">Privacy Policy</a>
+            <Link to="/faq" className="hover:text-pink-400">FAQ</Link>
+            <Link to="/privacypolicy" className="hover:text-pink-400">Privacy Policy</Link>
           </div>
   
           <div className="flex space-x-4 flex-wrap">
