@@ -83,7 +83,7 @@ const ImgUploader = () => {
   return (
     <>
     <Navbar />
-    <div className="min-h-screen bg-gradient-to-b from-[#0a0114] to-[#1a0b2e] text-white font-sans flex flex-col items-center justify-center px-4 py-10" id="fade-in2">
+    <div className="min-h-screen bg-gradient-to-b from-[#0a0114] to-[#1a0b2e] text-white font-sans flex flex-col items-center justify-center px-4 py-10 mt-20" id="fade-in2">
       <h2 className="text-4xl font-bold text-pink-500 mb-4 drop-shadow-[0_0_10px_#8a2be2]">
         🖼️ Image Recognition
       </h2>
